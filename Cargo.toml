@@ -4,6 +4,10 @@ version = "0.1.0"
 authors = ["Austin Krill <akrill91@gmail.com>"]
 edition = "2018"
 
+[lib]
+name = "common"
+path = "src/common.rs"
+
 [dependencies]
 env_logger = "0.7.1"
 log = "0.4.0"

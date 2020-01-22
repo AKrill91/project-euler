@@ -1,6 +1,7 @@
 extern crate env_logger;
 #[macro_use]
 extern crate log;
+extern crate common;
 
 use std::time::Instant;
 
@@ -26,7 +27,7 @@ fn compute(n: u64) -> u64 {
             let mut counter = 2;
 
             for i in (5..std::u64::MAX).step_by(2) {
-                if is_prime(i) {
+                if common::prime::is_prime(i) {
                     counter+=1;
 
                     if counter == n {
@@ -36,22 +37,6 @@ fn compute(n: u64) -> u64 {
             }
 
             0
-        }
-    }
-}
-
-fn is_prime(n: u64) -> bool {
-    match n {
-        1 => true,
-        2 => true,
-        3 => true,
-        5 => true,
-        7 => true,
-        _ => {
-            let sqrt = (n as f64).sqrt() as u64;
-
-            (3..=sqrt).step_by(2)
-                .all(|divisor| n % divisor != 0)
         }
     }
 }

@@ -1,24 +1,9 @@
 extern crate env_logger;
 #[macro_use]
 extern crate log;
+extern crate common;
 
 use std::time::Instant;
-
-fn is_prime(n: u64) -> bool {
-    match n {
-        1 => true,
-        2 => true,
-        3 => true,
-        5 => true,
-        7 => true,
-        _ => {
-            let sqrt = (n as f64).sqrt() as u64;
-
-            (3..=sqrt).step_by(2)
-                .all(|divisor| n % divisor != 0)
-        }
-    }
-}
 
 fn main() {
     env_logger::init();
@@ -44,7 +29,7 @@ fn compute(n: u64) -> u64 {
         .flat_map(|i| {
             vec!(n / i, i)
         })
-        .filter(|&i| is_prime(i))
+        .filter(|&i| common::prime::is_prime(i))
         .max()
         .unwrap()
 }
